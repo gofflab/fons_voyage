@@ -20,7 +20,7 @@ BLOG_AUTHOR = "Loyal Goff"  # (translatable)
 BLOG_TITLE = "Fons Voyage"  # (translatable)
 # This is the main URL for your site. It will be used
 # in a prominent link. Don't forget the protocol (http/https)!
-SITE_URL = "https://gofflab.github.io/fons_voyage_blog/"
+SITE_URL = "https://gofflab.github.io/fons_voyage/"
 # This is the URL where Nikola's output will be deployed.
 # If not set, defaults to SITE_URL
 # BASE_URL = "https://example.com/"
@@ -1034,7 +1034,7 @@ COMMENT_SYSTEM = "utterances"
 # Leave as "" to disable comments site-wide.
 # To switch to giscus (Discussions-backed) later, remove COMMENT_SYSTEM and
 # inject the giscus <script> via EXTRA_HEAD_DATA or a custom template.
-COMMENT_SYSTEM_ID = "gofflab/fons_voyage_blog"
+COMMENT_SYSTEM_ID = "gofflab/fons_voyage"
 
 # Create index.html for page folders?
 # WARNING: if a page would conflict with the index file (usually

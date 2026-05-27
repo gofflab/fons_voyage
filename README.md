@@ -6,7 +6,7 @@ The lab blog of the [Goff Lab](https://igm.jhmi.edu/) at the Johns Hopkins
 School of Medicine. Built with [Nikola](https://getnikola.com/) and deployed
 to GitHub Pages.
 
-**Live site:** https://gofflab.github.io/fons_voyage_blog/
+**Live site:** https://gofflab.github.io/fons_voyage/
 
 ---
 
@@ -70,7 +70,7 @@ Comments are powered by [utterances](https://utteranc.es/), which files
 each comment thread as a GitHub Issue in this repo. To activate:
 
 1. Install the [utterances GitHub App](https://github.com/apps/utterances)
-   on `gofflab/fons_voyage_blog`.
+   on `gofflab/fons_voyage`.
 2. That's it — `COMMENT_SYSTEM_ID` in `conf.py` is already set.
 
 To **switch to giscus** (Discussions-backed) instead, remove
@@ -95,7 +95,7 @@ In the repo on github.com:
    "Read and write permissions" is enabled (or rely on the per-job
    permissions in the workflow).
 3. Push to `main` — the first deployment will provision the site at
-   <https://gofflab.github.io/fons_voyage_blog/>.
+   <https://gofflab.github.io/fons_voyage/>.
 
 ### Custom domain (later)
 

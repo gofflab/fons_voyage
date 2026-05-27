@@ -42,6 +42,6 @@ neurogenesis using single-cell and spatial genomics. Find us at the
 ## Contributing
 
 Posts are written by lab members. Code for the site lives at
-[gofflab/fons_voyage_blog](https://github.com/gofflab/fons_voyage_blog).
+[gofflab/fons_voyage](https://github.com/gofflab/fons_voyage).
 Comments are powered by [utterances](https://utteranc.es/) and require a
 GitHub account.
