@@ -1,0 +1,10 @@
+[Theme]
+engine = mako
+parent = bootblog4
+author = Loyal Goff
+license = MIT
+based_on = bootblog4
+tags = bootstrap, blog, deep-ocean
+
+[Family]
+family = fonsvoyage

@@ -1,0 +1,321 @@
+/* ============================================================
+   Fons Voyage - Deep Ocean palette
+   Loaded last by bootblog4 (base_helper.tmpl) so it wins.
+   ============================================================ */
+
+:root {
+    --fv-ink: #0a2027;          /* near-black with teal undertone */
+    --fv-deep: #0d4d5e;         /* deep teal (primary) */
+    --fv-abyss: #052327;        /* very dark teal (header/footer) */
+    --fv-kelp: #1d6e6e;         /* mid teal (accents) */
+    --fv-coral: #e07a5f;        /* warm coral (links) */
+    --fv-coral-dark: #c25a3f;   /* coral hover */
+    --fv-sand: #f4e7c5;         /* warm cream (highlight) */
+    --fv-paper: #fbfaf6;        /* warm off-white background */
+    --fv-mist: #e6ebed;         /* very light teal-gray (borders) */
+    --fv-muted: #6c7a80;        /* secondary text */
+}
+
+/* ---------- Typography ---------- */
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+                 Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    color: var(--fv-ink);
+    background-color: var(--fv-paper);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: "kern", "liga", "calt";
+}
+
+h1, h2, h3, h4, h5, h6,
+.blog-header-logo, .entry-title, .blog-title {
+    font-family: "Fraunces", Georgia, "Times New Roman", serif;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--fv-ink);
+}
+
+h1, .entry-title { font-weight: 700; letter-spacing: -0.02em; }
+
+code, pre, kbd, samp,
+.code, .highlight pre {
+    font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, "SF Mono",
+                 Menlo, Consolas, "Liberation Mono", monospace;
+    font-size: 0.92em;
+}
+
+/* ---------- Header / brand ---------- */
+.blog-header {
+    border-bottom: 1px solid var(--fv-mist);
+    padding-bottom: 0.5rem;
+}
+
+.blog-header-logo {
+    font-family: "Fraunces", Georgia, serif;
+    font-weight: 700;
+    font-size: 2.5rem;
+    color: var(--fv-deep) !important;
+    letter-spacing: -0.02em;
+}
+
+.blog-header-logo:hover {
+    color: var(--fv-kelp) !important;
+    text-decoration: none;
+}
+
+.blog-tagline {
+    font-family: "Fraunces", Georgia, serif;
+    font-style: italic;
+    font-weight: 400;
+    color: var(--fv-muted);
+    font-size: 1.05rem;
+    margin-top: 0.15rem;
+    text-align: center;
+    line-height: 1.4;
+}
+
+@media (min-width: 40em) {
+    .blog-header-logo { font-size: 3rem; }
+    .blog-tagline { font-size: 1.15rem; }
+}
+
+/* ---------- Navbar ---------- */
+.navbar.navbar-light.bg-white {
+    background-color: var(--fv-paper) !important;
+    border-top: 1px solid var(--fv-mist);
+    border-bottom: 1px solid var(--fv-mist);
+}
+
+.navbar .nav-link {
+    color: var(--fv-deep) !important;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-size: 0.82rem;
+    padding-top: 0.85rem;
+    padding-bottom: 0.85rem;
+    transition: color 0.15s ease;
+}
+
+.navbar .nav-link:hover { color: var(--fv-coral) !important; }
+
+.navbar .nav-item.active > .nav-link {
+    color: var(--fv-coral) !important;
+    border-bottom: 2px solid var(--fv-coral);
+}
+
+/* ---------- Links ---------- */
+a, a:visited {
+    color: var(--fv-coral);
+    text-decoration: none;
+    transition: color 0.15s ease;
+}
+
+a:hover, a:focus {
+    color: var(--fv-coral-dark);
+    text-decoration: underline;
+    text-decoration-thickness: 1.5px;
+    text-underline-offset: 2px;
+}
+
+.text-dark { color: var(--fv-ink) !important; }
+.text-muted { color: var(--fv-muted) !important; }
+
+/* ---------- Articles ---------- */
+article {
+    margin-bottom: 4rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--fv-mist);
+}
+
+article:last-child { border-bottom: none; }
+
+.entry-title {
+    margin-bottom: 0.35rem;
+    font-size: 2.1rem;
+    line-height: 1.2;
+}
+
+.entry-title a, .entry-title a:visited {
+    color: var(--fv-ink);
+}
+
+.entry-title a:hover {
+    color: var(--fv-deep);
+    text-decoration: none;
+}
+
+article .metadata {
+    margin-bottom: 1.5rem;
+    color: var(--fv-muted);
+    font-size: 0.9rem;
+    font-family: "Inter", sans-serif;
+}
+
+article .metadata .tags a {
+    background-color: var(--fv-mist);
+    color: var(--fv-deep);
+    padding: 0.1rem 0.55rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    margin-right: 0.25rem;
+    display: inline-block;
+    line-height: 1.5;
+}
+
+article .metadata .tags a:hover {
+    background-color: var(--fv-deep);
+    color: #fff;
+    text-decoration: none;
+}
+
+/* ---------- Blockquote ---------- */
+blockquote {
+    border-left: 4px solid var(--fv-coral);
+    padding: 0.25rem 0 0.25rem 1.25rem;
+    margin: 1.5rem 0;
+    color: var(--fv-ink);
+    font-style: italic;
+    background: transparent;
+}
+
+/* ---------- Code blocks ---------- */
+pre, .highlight {
+    background-color: #f3eee2;
+    border: 1px solid var(--fv-sand);
+    border-radius: 6px;
+    padding: 0.9rem 1rem;
+    overflow-x: auto;
+    line-height: 1.5;
+}
+
+:not(pre) > code {
+    background-color: var(--fv-sand);
+    color: var(--fv-abyss);
+    padding: 0.1rem 0.35rem;
+    border-radius: 4px;
+}
+
+/* ---------- Tables ---------- */
+table {
+    border-collapse: collapse;
+    margin: 1.25rem 0;
+    width: 100%;
+}
+
+th, td {
+    border-bottom: 1px solid var(--fv-mist);
+    padding: 0.55rem 0.75rem;
+    text-align: left;
+}
+
+th {
+    border-bottom: 2px solid var(--fv-deep);
+    font-weight: 600;
+    color: var(--fv-deep);
+}
+
+/* ---------- Buttons / pagination ---------- */
+.btn-outline-primary,
+.btn-outline-secondary {
+    border-color: var(--fv-deep);
+    color: var(--fv-deep);
+    border-radius: 999px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    padding: 0.4rem 1.25rem;
+}
+
+.btn-outline-primary:hover,
+.btn-outline-secondary:hover {
+    background-color: var(--fv-deep);
+    border-color: var(--fv-deep);
+    color: #fff;
+}
+
+.blog-pagination { margin: 2.5rem 0 4rem; }
+
+/* ---------- Footer ---------- */
+.blog-footer,
+#footer {
+    padding: 2.5rem 0 3rem;
+    color: var(--fv-mist);
+    text-align: center;
+    background-color: var(--fv-abyss);
+    border-top: 4px solid var(--fv-deep);
+    margin-top: 4rem;
+    font-size: 0.9rem;
+}
+
+#footer { padding: 2rem 1rem; }
+
+#footer a, .blog-footer a {
+    color: var(--fv-sand);
+    text-decoration: underline;
+    text-decoration-color: rgba(244, 231, 197, 0.4);
+}
+
+#footer a:hover, .blog-footer a:hover {
+    color: #fff;
+    text-decoration-color: #fff;
+}
+
+/* ---------- Images ---------- */
+article img,
+.body-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+}
+
+/* ---------- HR ---------- */
+hr {
+    border: none;
+    height: 1px;
+    background: linear-gradient(to right,
+        transparent, var(--fv-mist), transparent);
+    margin: 2.5rem 0;
+}
+
+/* ---------- Search form ---------- */
+.bootblog4-search-form-holder .form-control {
+    border-color: var(--fv-mist);
+    border-radius: 999px;
+}
+
+.bootblog4-search-form-holder .btn {
+    border-radius: 999px;
+}
+
+/* ---------- Selection ---------- */
+::selection {
+    background: var(--fv-sand);
+    color: var(--fv-abyss);
+}
+
+/* ---------- Skip link (a11y) ---------- */
+.sr-only-focusable:focus {
+    background: var(--fv-deep);
+    color: #fff;
+    padding: 0.5rem 1rem;
+    z-index: 1000;
+}
+
+/* ---------- Featured-post boxes (bootblog4) ---------- */
+.bootblog4-featured-jumbotron-row .jumbotron,
+.bootblog4-featured-text {
+    background-color: var(--fv-mist);
+    color: var(--fv-ink);
+    border-radius: 6px;
+}
+
+/* ---------- Utterances iframe spacing ---------- */
+#utterances-thread {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--fv-mist);
+}
