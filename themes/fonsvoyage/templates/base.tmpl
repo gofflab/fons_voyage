@@ -33,7 +33,11 @@ ${template_hooks['extra_head']()}
         % endif
         </a>
         % if blog_tagline:
-            <div class="blog-tagline">${blog_tagline}</div>
+            <div class="blog-tagline">
+            % for sentence in [s.strip() for s in blog_tagline.split('. ') if s.strip()]:
+                <span class="tagline-line">${sentence if sentence.endswith('.') else sentence + '.'}</span>
+            % endfor
+            </div>
         % endif
           </div>
             <div class="col-md-3 justify-content-end align-items-center bs-nav-collapsible collapse flex-collapse bootblog4-right-nav">
