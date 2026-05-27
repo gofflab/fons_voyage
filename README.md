@@ -2,6 +2,8 @@
 
 > Dispatches from the neurogenic niche. Cells, sequences, and cephalopods.
 
+[![Build and deploy](https://github.com/gofflab/fons_voyage/actions/workflows/deploy.yml/badge.svg)](https://github.com/gofflab/fons_voyage/actions/workflows/deploy.yml)
+
 The lab blog of the [Goff Lab](https://igm.jhmi.edu/) at the Johns Hopkins
 School of Medicine. Built with [Nikola](https://getnikola.com/) and deployed
 to GitHub Pages.
