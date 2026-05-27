@@ -1,0 +1,21 @@
+## -*- coding: utf-8 -*-
+<%def name="comment_form(url, title, identifier)">
+    % if giscus_config:
+        <div class="giscus"></div>
+        <script src="https://giscus.app/client.js"
+        % for k, v in giscus_config.items():
+        ${k}="${v}"
+        % endfor
+        crossorigin="anonymous"
+        async></script>
+    % endif
+</%def>
+
+<%def name="comment_link(link, identifier)">
+    % if giscus_config:
+        <a href="${link}#comments">${messages("Comments")}</a>
+    % endif
+</%def>
+
+<%def name="comment_link_script()">
+</%def>
