@@ -64,18 +64,22 @@ To tweak colors, edit the CSS variables at the top of that file:
 }
 ```
 
-## Comments (utterances)
+## Comments (giscus)
 
-Comments are powered by [utterances](https://utteranc.es/), which files
-each comment thread as a GitHub Issue in this repo. To activate:
+Comments are powered by [giscus](https://giscus.app/), which stores each
+comment thread as a GitHub Discussion in this repo. To activate (one-time):
 
-1. Install the [utterances GitHub App](https://github.com/apps/utterances)
-   on `gofflab/fons_voyage`.
-2. That's it — `COMMENT_SYSTEM_ID` in `conf.py` is already set.
+1. **Settings → General → Features → Discussions** (enable).
+2. Install the [giscus GitHub App](https://github.com/apps/giscus) on
+   `gofflab/fons_voyage`.
+3. The Discussion category, repo IDs, and mapping mode are already set
+   in `conf.py` under `GLOBAL_CONTEXT["giscus_config"]`. To change them
+   later (e.g. switch category), regenerate the config at
+   [giscus.app](https://giscus.app/) and paste the new `data-*` values
+   into that dict.
 
-To **switch to giscus** (Discussions-backed) instead, remove
-`COMMENT_SYSTEM = "utterances"` from `conf.py` and inject the giscus
-`<script>` tag via `EXTRA_HEAD_DATA` or a small theme template.
+Comments inherit the visitor's light/dark preference automatically
+(`data-theme: preferred_color_scheme`).
 
 ## Deployment
 

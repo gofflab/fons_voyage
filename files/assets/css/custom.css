@@ -313,9 +313,19 @@ hr {
     border-radius: 6px;
 }
 
-/* ---------- Utterances iframe spacing ---------- */
-#utterances-thread {
+/* ---------- Giscus iframe spacing ---------- */
+.giscus,
+.giscus-frame {
+    margin-top: 1.5rem;
+}
+
+.comments {
     margin-top: 3rem;
     padding-top: 2rem;
     border-top: 1px solid var(--fv-mist);
+}
+
+.comments h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
 }

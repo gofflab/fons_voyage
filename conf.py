@@ -1026,14 +1026,9 @@ RSS_COPYRIGHT_FORMATS = CONTENT_FOOTER_FORMATS
 #   disqus, discourse, facebook, intensedebate, isso, muut, commento,
 #   utterances
 # You can leave this option blank to disable comments.
-COMMENT_SYSTEM = "utterances"
-# For utterances, COMMENT_SYSTEM_ID is the GitHub repo ("owner/repo")
-# where comment issues will be filed. The repo must:
-#   1. Be public
-#   2. Have the utterances GitHub app installed: https://github.com/apps/utterances
-# Leave as "" to disable comments site-wide.
-# To switch to giscus (Discussions-backed) later, remove COMMENT_SYSTEM and
-# inject the giscus <script> via EXTRA_HEAD_DATA or a custom template.
+COMMENT_SYSTEM = "giscus"
+# Giscus is configured entirely via GLOBAL_CONTEXT['giscus_config'] below;
+# COMMENT_SYSTEM_ID is unused but kept for documentation of the data-repo value.
 COMMENT_SYSTEM_ID = "gofflab/fons_voyage"
 
 # Create index.html for page folders?
@@ -1436,14 +1431,21 @@ WARN_ABOUT_TAG_METADATA = False
 GLOBAL_CONTEXT = {
     # Tagline shown under the blog title in the fonsvoyage theme header.
     "blog_tagline": "Dispatches from the neurogenic niche. Cells, sequences, and cephalopods.",
-    # Passed to the utterances comment template. See:
-    # https://utteranc.es/ for the full option list.
-    "utterances_config": {
-        "issue-term": "pathname",
-        "label": "comments",
-        "theme": "preferred-color-scheme",
-        "crossorigin": "anonymous",
-        "async": "true",
+    # Passed to the giscus comment template. Values come from giscus.app's
+    # configuration wizard. See https://giscus.app/ to regenerate after
+    # changing the discussion category or repo.
+    "giscus_config": {
+        "data-repo": "gofflab/fons_voyage",
+        "data-repo-id": "R_kgDOSo41Rw",
+        "data-category": "Announcements",
+        "data-category-id": "DIC_kwDOSo41R84C968E",
+        "data-mapping": "pathname",
+        "data-strict": "0",
+        "data-reactions-enabled": "1",
+        "data-emit-metadata": "0",
+        "data-input-position": "top",
+        "data-theme": "preferred_color_scheme",
+        "data-lang": "en",
     },
 }
 
