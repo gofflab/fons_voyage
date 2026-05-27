@@ -222,3 +222,7 @@ __marimo__/
 /cache/
 /.doit.db*
 
+# Local conda env directories (in case someone installs in-tree)
+/envs/
+/.conda/
+

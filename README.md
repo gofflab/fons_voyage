@@ -2,6 +2,8 @@
 
 > Dispatches from the neurogenic niche. Cells, sequences, and cephalopods.
 
+[![Build and deploy](https://github.com/gofflab/fons_voyage/actions/workflows/deploy.yml/badge.svg)](https://github.com/gofflab/fons_voyage/actions/workflows/deploy.yml)
+
 The lab blog of the [Goff Lab](https://igm.jhmi.edu/) at the Johns Hopkins
 School of Medicine. Built with [Nikola](https://getnikola.com/) and deployed
 to GitHub Pages.
@@ -12,13 +14,20 @@ to GitHub Pages.
 
 ## Local development
 
-You need Python 3.10+ and a virtualenv. From the repo root:
+The environment is defined in `environment.yml` and managed with
+[conda](https://docs.conda.io/) / [mamba](https://mamba.readthedocs.io/).
+[Miniforge](https://github.com/conda-forge/miniforge) (which bundles
+`mamba` + conda-forge defaults) is the recommended installer.
 
 ```bash
-python3 -m venv .venv
-source .venv/bin/activate
-pip install --upgrade pip setuptools wheel
-pip install "Nikola[extras]"
+# create the env
+mamba env create -f environment.yml      # or: conda env create -f environment.yml
+
+# activate it (run this each new shell)
+mamba activate fons_voyage
+
+# later, after pulling changes to environment.yml
+mamba env update -f environment.yml --prune
 ```
 
 ### Common commands
@@ -85,7 +94,7 @@ Comments inherit the visitor's light/dark preference automatically
 
 Pushes to `main` trigger `.github/workflows/deploy.yml`:
 
-1. Install Nikola in a fresh runner.
+1. Provision a micromamba env from `environment.yml` (cached between runs).
 2. Run `nikola build`.
 3. Upload `output/` as a Pages artifact.
 4. Deploy to GitHub Pages.
