@@ -58,31 +58,69 @@ body {
     color: var(--fv-foam);
     background-color: #000000;
     background-image:
-        /* Sharp narrow shafts — vary in length, position, and intensity */
-        radial-gradient(ellipse 1.8% 80% at 14% -8%,
-            rgba(195, 235, 242, 0.18), transparent 62%),
-        radial-gradient(ellipse 1.2% 30% at 19% -3%,
-            rgba(200, 238, 245, 0.14), transparent 72%),
-        radial-gradient(ellipse 2.0% 70% at 35% -6%,
-            rgba(190, 232, 240, 0.13), transparent 65%),
-        radial-gradient(ellipse 1.5% 92% at 58% -10%,
-            rgba(200, 238, 245, 0.20), transparent 60%),
-        radial-gradient(ellipse 1.0% 25% at 71% -2%,
-            rgba(190, 230, 238, 0.10), transparent 78%),
-        radial-gradient(ellipse 2.4% 55% at 83% -5%,
-            rgba(195, 235, 242, 0.17), transparent 64%),
-        radial-gradient(ellipse 1.4% 38% at 91% -4%,
-            rgba(185, 228, 238, 0.11), transparent 70%),
-        /* Broader soft diffuse bands — wash, not beams */
-        radial-gradient(ellipse 9% 50% at 8% -8%,
-            rgba(170, 220, 230, 0.06), transparent 72%),
-        radial-gradient(ellipse 11% 42% at 48% -10%,
-            rgba(155, 215, 225, 0.05), transparent 75%),
-        radial-gradient(ellipse 7% 58% at 76% -8%,
-            rgba(170, 220, 230, 0.07), transparent 68%),
-        /* Diffuse surface glow band */
-        radial-gradient(ellipse 75% 22% at 50% -10%,
-            rgba(140, 210, 220, 0.10), transparent 75%),
+        /*
+         * Sharp narrow shafts — each ray uses a multi-stop falloff so its
+         * edges blend rather than snap. Colors stay close to the upper
+         * water hue (blue-green) instead of pure white-cyan so the rays
+         * read as filtered sunlight, not stage lights.
+         */
+        radial-gradient(ellipse 2.5% 85% at 14% -8%,
+            rgba(150, 205, 220, 0.085) 0%,
+            rgba(140, 200, 215, 0.04)  35%,
+            rgba(130, 190, 205, 0.012) 65%,
+            transparent 88%),
+        radial-gradient(ellipse 1.8% 35% at 19% -3%,
+            rgba(155, 210, 225, 0.06) 0%,
+            rgba(145, 200, 215, 0.025) 45%,
+            transparent 80%),
+        radial-gradient(ellipse 2.8% 75% at 35% -6%,
+            rgba(150, 205, 220, 0.07) 0%,
+            rgba(140, 200, 215, 0.035) 40%,
+            rgba(130, 190, 205, 0.012) 70%,
+            transparent 88%),
+        radial-gradient(ellipse 2.2% 92% at 58% -10%,
+            rgba(155, 210, 225, 0.09) 0%,
+            rgba(145, 205, 220, 0.05)  30%,
+            rgba(135, 195, 210, 0.018) 60%,
+            transparent 85%),
+        radial-gradient(ellipse 1.5% 28% at 71% -2%,
+            rgba(150, 205, 220, 0.05)  0%,
+            rgba(140, 200, 215, 0.022) 45%,
+            transparent 78%),
+        radial-gradient(ellipse 3.0% 60% at 83% -5%,
+            rgba(150, 205, 220, 0.075) 0%,
+            rgba(140, 200, 215, 0.038) 35%,
+            rgba(130, 195, 210, 0.014) 65%,
+            transparent 85%),
+        radial-gradient(ellipse 2.0% 42% at 91% -4%,
+            rgba(155, 210, 225, 0.055) 0%,
+            rgba(145, 200, 215, 0.022) 45%,
+            transparent 80%),
+        /*
+         * Broader diffuse columns — wash, never beams. Wider + cooler so
+         * they fill the empty stretches as scattered ambient light.
+         */
+        radial-gradient(ellipse 14% 55% at 8% -8%,
+            rgba(120, 185, 205, 0.035) 0%,
+            rgba(110, 180, 200, 0.015) 50%,
+            transparent 80%),
+        radial-gradient(ellipse 16% 45% at 48% -10%,
+            rgba(120, 190, 210, 0.03)  0%,
+            rgba(110, 180, 200, 0.012) 50%,
+            transparent 80%),
+        radial-gradient(ellipse 12% 60% at 76% -8%,
+            rgba(120, 185, 205, 0.04)  0%,
+            rgba(110, 180, 200, 0.018) 50%,
+            transparent 80%),
+        /*
+         * Diffuse ambient surface haze — wide soft band, cooler again to
+         * suggest the wavelength-dependent attenuation that makes deeper
+         * scattered light skew blue-green.
+         */
+        radial-gradient(ellipse 90% 30% at 50% -12%,
+            rgba(100, 175, 195, 0.065) 0%,
+            rgba(90, 165, 185, 0.025)  45%,
+            transparent 80%),
         /* The water column itself — deeper and darker than before */
         linear-gradient(180deg,
             #0a3d54 0%,     /* upper mesopelagic — already dim */
