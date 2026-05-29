@@ -65,6 +65,9 @@ html {
  * stream down from above and dissipate as they descend.
  */
 body {
+    position: relative;
+    min-height: 100vh;
+    padding-bottom: 100px;   /* room for the ocean floor */
     font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
                  Roboto, "Helvetica Neue", Arial, sans-serif;
     font-size: 1.0625rem;
@@ -597,6 +600,85 @@ div.input_area > div.highlight,
     margin: 0 !important;
 }
 
+/*
+ * Markdown cells should look like prose on the article surface,
+ * not like code wells. nbconvert wraps markdown content in the
+ * same .jp-InputArea container used for code, so we have to
+ * specifically strip the code-well treatment back off and force
+ * the body text color (with !important to beat any inline or
+ * embedded nbconvert defaults that ship inside the notebook).
+ */
+.jp-MarkdownCell .jp-InputArea,
+.jp-MarkdownCell .jp-Cell-inputArea,
+.text_cell .input,
+.text_cell .input_area {
+    background-color: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+}
+
+.jp-MarkdownCell .jp-InputPrompt,
+.text_cell .prompt,
+.text_cell .input_prompt { display: none !important; }
+
+.jp-MarkdownCell,
+.jp-RenderedMarkdown,
+.jp-MarkdownOutput,
+.text_cell_render,
+.rendered_html,
+.jp-RenderedHTMLCommon {
+    color: var(--fv-text) !important;
+}
+
+.jp-RenderedMarkdown p,
+.jp-RenderedMarkdown li,
+.jp-RenderedMarkdown ul,
+.jp-RenderedMarkdown ol,
+.jp-RenderedMarkdown blockquote,
+.jp-RenderedMarkdown strong,
+.jp-RenderedMarkdown em,
+.jp-MarkdownOutput p,
+.jp-MarkdownOutput li,
+.text_cell_render p,
+.text_cell_render li,
+.text_cell_render ul,
+.text_cell_render ol,
+.text_cell_render strong,
+.text_cell_render em,
+.rendered_html p,
+.rendered_html li,
+.rendered_html ul,
+.rendered_html ol,
+.rendered_html strong,
+.rendered_html em {
+    color: var(--fv-text) !important;
+}
+
+/* Notebook markdown headings — pull them back onto the brand scale */
+.jp-RenderedMarkdown h1, .text_cell_render h1, .rendered_html h1 { font-size: 1.85rem; margin-top: 2.25rem; }
+.jp-RenderedMarkdown h2, .text_cell_render h2, .rendered_html h2 { font-size: 1.5rem;  margin-top: 2rem; }
+.jp-RenderedMarkdown h3, .text_cell_render h3, .rendered_html h3 { font-size: 1.2rem;  margin-top: 1.5rem; }
+
+.jp-RenderedMarkdown ul,
+.jp-MarkdownOutput ul,
+.text_cell_render ul,
+.rendered_html ul,
+.jp-RenderedMarkdown ol,
+.jp-MarkdownOutput ol,
+.text_cell_render ol,
+.rendered_html ol {
+    padding-left: 1.5rem;
+    margin: 0.75rem 0 1.15rem;
+}
+
+.jp-RenderedMarkdown li,
+.text_cell_render li,
+.rendered_html li {
+    margin-bottom: 0.4rem;
+}
+
 /* Prompt labels */
 .jp-InputPrompt,
 .jp-OutputPrompt,
@@ -741,3 +823,29 @@ div.output_area svg {
 /* ---------- Pygments / monokai polish on dark background ---------- */
 .highlight { background-color: var(--fv-surface-code); }
 .highlight .hll { background-color: rgba(94, 234, 212, 0.08); }
+
+/* ===========================================================
+   Ocean floor
+   A thin SVG seabed anchored to the bottom of <body>. The body
+   gets min-height: 100vh and padding-bottom to make room for
+   it, so on short pages the floor still sits at the bottom of
+   the viewport (the page "hovers above the seabed") and on
+   long pages it appears at the very end of the document.
+   The SVG itself is dark — sediment, low silhouette mounds,
+   and a few faint bioluminescent specks — so it emerges from
+   the dark gradient rather than crashing against it.
+   =========================================================== */
+.ocean-floor {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 80px;
+    background-image: url("../img/ocean-floor.svg");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    pointer-events: none;
+    z-index: 0;
+}
+
