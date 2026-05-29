@@ -67,7 +67,7 @@ html {
 body {
     position: relative;
     min-height: 100vh;
-    padding-bottom: 100px;   /* room for the ocean floor */
+    padding-bottom: 125px;   /* room for the ocean floor */
     font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
                  Roboto, "Helvetica Neue", Arial, sans-serif;
     font-size: 1.0625rem;
@@ -840,7 +840,7 @@ div.output_area svg {
     left: 0;
     right: 0;
     bottom: 0;
-    height: 80px;
+    height: 105px;
     background-image: url("../img/ocean-floor.svg");
     background-size: 100% 100%;
     background-repeat: no-repeat;
