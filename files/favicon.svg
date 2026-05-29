@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Fons Voyage">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="22%" r="85%">
+      <stop offset="0%" stop-color="#0a3d54"/>
+      <stop offset="55%" stop-color="#051a2a"/>
+      <stop offset="100%" stop-color="#000000"/>
+    </radialGradient>
+    <linearGradient id="ray" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#a7dde5" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#a7dde5" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="12" fill="url(#bg)"/>
+  <path d="M16 0 L24 0 L28 50 L12 50 Z" fill="url(#ray)"/>
+  <path d="M44 0 L48 0 L50 36 L40 36 Z" fill="url(#ray)" opacity="0.7"/>
+  <text x="32" y="50" text-anchor="middle"
+        font-family="Georgia, 'Times New Roman', serif"
+        font-weight="700" font-size="44"
+        fill="#5eead4">F</text>
+</svg>

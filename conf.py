@@ -1272,7 +1272,9 @@ EXTRA_HEAD_DATA = """
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-"""
+<link rel="icon" type="image/svg+xml" href="%(site)sfavicon.svg">
+<link rel="mask-icon" href="%(site)sfavicon.svg" color="#5eead4">
+""" % {"site": SITE_URL}
 # Google Analytics or whatever else you use. Added to the bottom of <body>
 # in the default template (base.tmpl).
 # (translatable)
