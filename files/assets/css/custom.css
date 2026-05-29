@@ -220,6 +220,40 @@ code, pre, kbd, samp,
 
 .blog-tagline .tagline-line { display: block; }
 
+/*
+ * Mobile header layout — keep the hamburger button on the same
+ * horizontal line as the brand title. By default Bootstrap's row
+ * wraps when the brand column doesn't fit, which pushed the title
+ * onto a row below the hamburger. Force the row to one line, let
+ * the brand column take the remaining width, shrink the title,
+ * and left-align the tagline so it stacks neatly beneath.
+ */
+@media (max-width: 39.9375em) {
+    .blog-header .nbb-header {
+        flex-wrap: nowrap;
+        align-items: center;
+    }
+
+    .blog-header .bootblog4-brand {
+        flex: 1 1 0;
+        min-width: 0;
+        text-align: left;
+        padding-left: 0.75rem;
+    }
+
+    .blog-header-logo,
+    .blog-header-logo.text-dark {
+        font-size: 1.7rem;
+        white-space: nowrap;
+    }
+
+    .blog-tagline {
+        text-align: left;
+        font-size: 0.85rem;
+        margin-top: 0.25rem;
+    }
+}
+
 @media (min-width: 40em) {
     .blog-header-logo { font-size: 3rem; }
     .blog-tagline { font-size: 1.15rem; }
