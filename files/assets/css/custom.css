@@ -1,68 +1,81 @@
 /* ============================================================
-   Fons Voyage — Deep Ocean (dark/underwater) palette
+   Fons Voyage — Deep Ocean (dark / underwater) palette
    Loaded last by bootblog4 (base_helper.tmpl) so it wins.
+
+   Design intent:
+   - The page background keeps the underwater feel: ocean
+     gradient + caustic light shafts. It is ambient — the
+     atmosphere, not the reading surface.
+   - Content lives on opaque "card" surfaces that visually
+     rise above the water. Body text sits on these cards at
+     high contrast and is what you actually read.
+   - A small set of accent colors (bio-cyan, coral, sand) is
+     used sparingly: brand, headings, links, selection.
    ============================================================ */
 
 :root {
-    /* Water column — darkest at the bottom */
-    --fv-abyss:   #04161d;   /* page background, deepest */
-    --fv-trench:  #07212a;   /* container surfaces */
-    --fv-deep:    #0c3140;   /* lifted cards, code wells */
-    --fv-current: #144556;   /* borders, dividers */
-    --fv-kelp:    #1f7a7a;   /* mid teal — secondary accent */
+    /* Ambient — the water column itself */
+    --fv-abyss:    #04161d;
+    --fv-trench:   #07212a;
+    --fv-deep:     #0c3140;
+    --fv-current:  #144556;
+    --fv-kelp:     #1f7a7a;
 
-    /* Life in the dark */
-    --fv-bio:        #5eead4;   /* bioluminescent mint — headings/brand */
-    --fv-bio-soft:   #7dd3c0;   /* dimmer bio */
-    --fv-coral:      #ff8a65;   /* warm coral — links */
-    --fv-coral-hot:  #ffa888;   /* coral hover */
-    --fv-sand:       #f4e7c5;   /* warm cream — selection / rare accents */
+    /* Content surfaces — opaque, designed for reading */
+    --fv-surface:        #0f1f2a;   /* article cards: where you read */
+    --fv-surface-soft:   #142734;   /* lifted: dataframe header, callouts */
+    --fv-surface-code:   #091621;   /* inset: code wells, notebook inputs */
+    --fv-surface-output: #0c1c27;   /* notebook output well */
+    --fv-surface-border: #1d3a4d;   /* card and well borders */
+    --fv-surface-edge:   #2a5266;   /* top-of-card light catch */
 
-    /* Type */
-    --fv-foam:    #e8f1f4;   /* primary text on dark */
-    --fv-mist:    #aec3cc;   /* secondary text */
-    --fv-muted:   #7a96a3;   /* tertiary text / metadata */
+    /* Type on content surfaces — high contrast, cool tint */
+    --fv-text:        #e6edf3;   /* body — 16:1 on --fv-surface */
+    --fv-text-soft:   #c7d4de;   /* secondary body, dataframe cells */
+    --fv-mist:        #a8bac6;   /* metadata, captions */
+    --fv-muted:       #788e9a;   /* tertiary, prompt labels */
+    --fv-foam:        var(--fv-text);  /* legacy alias */
+
+    /* Life in the dark — accents */
+    --fv-bio:         #5eead4;   /* bioluminescent mint — brand, headings */
+    --fv-bio-soft:    #8be8d2;   /* dimmer bio — inline code, dataframe header */
+    --fv-coral:       #ff9d7a;   /* warm coral — links */
+    --fv-coral-hot:   #ffb59a;   /* coral hover */
+    --fv-sand:        #f4e7c5;   /* warm cream — selection */
 
     /* Layout */
     --fv-radius:    8px;
-    --fv-radius-lg: 12px;
-    --fv-shadow:    0 1px 0 rgba(94, 234, 212, 0.04) inset,
-                    0 12px 32px -16px rgba(0, 0, 0, 0.6);
+    --fv-radius-lg: 14px;
+    --fv-shadow:    0 1px 0 rgba(94, 234, 212, 0.06) inset,
+                    0 16px 40px -18px rgba(0, 0, 0, 0.7),
+                    0 2px 8px -4px rgba(0, 0, 0, 0.4);
 }
 
 /* ---------- Reset / base ---------- */
 html {
     -webkit-text-size-adjust: 100%;
-    background-color: #000000;  /* abyss fallback */
+    background-color: #000000;
 }
 
 /*
- * Underwater water column — viewer is already below the sunlit zone.
- * The gradient is fixed to the viewport so the bottom of the screen is
- * always the deepest, regardless of scroll position. Zone colors loosely
- * follow real ocean color attenuation:
- *   0–200m    sunlit / epipelagic    — blue-green, daylight
- *   200–1000m twilight / mesopelagic — deep blue, dimming
- *   1000m+    midnight / bathypelagic + abyss — near-black
- *
- * Layered radial gradients at the top mimic crepuscular rays / "god rays"
- * — narrow columns of scattered light streaming down from the surface
- * and dissipating as they descend. They sit above the water-column
- * gradient so they read brighter against the dark below.
+ * Underwater water column — ambient page background.
+ * The viewer is below the sunlit zone. The gradient is fixed
+ * to the viewport so the bottom of the screen is always the
+ * deepest, regardless of scroll position. Caustic light shafts
+ * stream down from above and dissipate as they descend.
  */
 body {
     font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
                  Roboto, "Helvetica Neue", Arial, sans-serif;
     font-size: 1.0625rem;
     line-height: 1.7;
-    color: var(--fv-foam);
+    color: var(--fv-text);
     background-color: #000000;
     background-image:
         /*
          * Sharp narrow shafts — each ray uses a multi-stop falloff so its
          * edges blend rather than snap. Colors stay close to the upper
-         * water hue (blue-green) instead of pure white-cyan so the rays
-         * read as filtered sunlight, not stage lights.
+         * water hue so the rays read as filtered sunlight, not stage lights.
          */
         radial-gradient(ellipse 2.5% 85% at 14% -8%,
             rgba(150, 205, 220, 0.085) 0%,
@@ -96,10 +109,7 @@ body {
             rgba(155, 210, 225, 0.055) 0%,
             rgba(145, 200, 215, 0.022) 45%,
             transparent 80%),
-        /*
-         * Broader diffuse columns — wash, never beams. Wider + cooler so
-         * they fill the empty stretches as scattered ambient light.
-         */
+        /* Broader diffuse columns — wash, never beams */
         radial-gradient(ellipse 14% 55% at 8% -8%,
             rgba(120, 185, 205, 0.035) 0%,
             rgba(110, 180, 200, 0.015) 50%,
@@ -112,18 +122,14 @@ body {
             rgba(120, 185, 205, 0.04)  0%,
             rgba(110, 180, 200, 0.018) 50%,
             transparent 80%),
-        /*
-         * Diffuse ambient surface haze — wide soft band, cooler again to
-         * suggest the wavelength-dependent attenuation that makes deeper
-         * scattered light skew blue-green.
-         */
+        /* Diffuse ambient surface haze */
         radial-gradient(ellipse 90% 30% at 50% -12%,
             rgba(100, 175, 195, 0.065) 0%,
             rgba(90, 165, 185, 0.025)  45%,
             transparent 80%),
-        /* The water column itself — deeper and darker than before */
+        /* The water column itself */
         linear-gradient(180deg,
-            #0a3d54 0%,     /* upper mesopelagic — already dim */
+            #0a3d54 0%,
             #082e43 10%,
             #062335 20%,
             #051a2a 32%,
@@ -132,7 +138,7 @@ body {
             #020811 68%,
             #01050a 80%,
             #000205 90%,
-            #000000 100%); /* true abyssal */
+            #000000 100%);
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: 100% 100%;
@@ -146,13 +152,19 @@ h1, h2, h3, h4, h5, h6,
     font-family: "Fraunces", Georgia, "Times New Roman", serif;
     font-weight: 600;
     letter-spacing: -0.01em;
-    color: var(--fv-foam);
+    color: var(--fv-text);
 }
 
 h1, .entry-title { font-weight: 700; letter-spacing: -0.02em; }
 
-h2 { margin-top: 2.5rem; }
-h3 { margin-top: 2rem; }
+article h2 { margin-top: 2.75rem; font-size: 1.65rem; }
+article h3 { margin-top: 2rem;    font-size: 1.3rem; }
+article h4 { margin-top: 1.5rem;  font-size: 1.1rem; }
+
+article p { margin-bottom: 1.15rem; }
+article ul, article ol { margin-bottom: 1.15rem; padding-left: 1.5rem; }
+article li { margin-bottom: 0.35rem; }
+article li > p { margin-bottom: 0.5rem; }
 
 code, pre, kbd, samp,
 .code, .highlight pre {
@@ -161,18 +173,16 @@ code, pre, kbd, samp,
     font-size: 0.92em;
 }
 
-/* ---------- Layout container — narrower for readability ---------- */
-.container { max-width: 980px; }
+/* ---------- Layout container ---------- */
+.container { max-width: 1000px; }
 
 #content.container,
-.body-content {
-    padding-top: 1rem;
-}
+.body-content { padding-top: 1.25rem; }
 
 /* ---------- Header / brand ---------- */
 .blog-header {
-    border-bottom: 1px solid var(--fv-current);
-    padding: 2rem 0 1.25rem;
+    border-bottom: 1px solid rgba(29, 58, 77, 0.5);
+    padding: 2rem 0 1.5rem;
 }
 
 .blog-header-logo,
@@ -182,7 +192,7 @@ code, pre, kbd, samp,
     font-size: 2.5rem;
     color: var(--fv-bio) !important;
     letter-spacing: -0.02em;
-    text-shadow: 0 0 24px rgba(94, 234, 212, 0.18);
+    text-shadow: 0 0 24px rgba(94, 234, 212, 0.2);
 }
 
 .blog-header-logo:hover,
@@ -197,9 +207,9 @@ code, pre, kbd, samp,
     font-weight: 400;
     color: var(--fv-mist);
     font-size: 1.05rem;
-    margin-top: 0.25rem;
+    margin-top: 0.4rem;
     text-align: center;
-    line-height: 1.5;
+    line-height: 1.55;
 }
 
 .blog-tagline .tagline-line { display: block; }
@@ -209,29 +219,27 @@ code, pre, kbd, samp,
     .blog-tagline { font-size: 1.15rem; }
 }
 
-/* ---------- Navbars (override bootstrap navbar-light bg-white) ---------- */
+/* ---------- Navbar ---------- */
 .navbar.navbar-light.bg-white,
 nav.navbar.navbar-light.bg-white {
     background-color: transparent !important;
-    border-top: 1px solid var(--fv-current);
-    border-bottom: 1px solid var(--fv-current);
+    border-top: 1px solid rgba(29, 58, 77, 0.5);
+    border-bottom: 1px solid rgba(29, 58, 77, 0.5);
 }
 
 .navbar .nav-link {
-    color: var(--fv-mist) !important;
+    color: var(--fv-text-soft) !important;
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    font-size: 0.8rem;
+    font-size: 0.78rem;
     padding: 0.85rem 1rem;
     transition: color 0.15s ease, border-color 0.15s ease;
     border-bottom: 2px solid transparent;
 }
 
 .navbar .nav-link:hover,
-.navbar .nav-link:focus {
-    color: var(--fv-bio) !important;
-}
+.navbar .nav-link:focus { color: var(--fv-bio) !important; }
 
 .navbar .nav-item.active > .nav-link,
 .navbar .nav-link.active {
@@ -240,13 +248,12 @@ nav.navbar.navbar-light.bg-white {
 }
 
 .navbar-toggler.navbar-light.bg-light {
-    background-color: var(--fv-deep) !important;
-    border-color: var(--fv-current) !important;
+    background-color: var(--fv-surface) !important;
+    border-color: var(--fv-surface-border) !important;
 }
 
 .navbar-toggler-icon {
-    /* swap dark glyph for a light one */
-    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(232,241,244,0.85)' stroke-width='2' stroke-linecap='round' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E") !important;
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(230,237,243,0.9)' stroke-width='2' stroke-linecap='round' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E") !important;
 }
 
 /* ---------- Links ---------- */
@@ -263,69 +270,76 @@ a:hover, a:focus {
     text-underline-offset: 3px;
 }
 
-.text-dark { color: var(--fv-foam) !important; }
+.text-dark  { color: var(--fv-text) !important; }
 .text-muted { color: var(--fv-muted) !important; }
 
-/* ---------- Articles ---------- */
+/* ---------- Articles — opaque content cards above the water ---------- */
 article {
-    margin-bottom: 3rem;
-    padding: 2rem 2.25rem;
-    background: linear-gradient(180deg,
-        rgba(12, 49, 64, 0.35) 0%,
-        rgba(7, 33, 42, 0.45) 100%);
-    border: 1px solid var(--fv-current);
+    position: relative;
+    margin: 0 0 3rem;
+    padding: 2.5rem 2.5rem 2rem;
+    background-color: var(--fv-surface);
+    border: 1px solid var(--fv-surface-border);
     border-radius: var(--fv-radius-lg);
     box-shadow: var(--fv-shadow);
+    color: var(--fv-text);
 }
 
-article + article { margin-top: 0; }
-article:last-child { border-bottom: 1px solid var(--fv-current); }
+/* Subtle bio-cyan light-catch along the top edge of each card */
+article::before {
+    content: '';
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+        transparent 0%,
+        rgba(94, 234, 212, 0.0)  10%,
+        rgba(94, 234, 212, 0.28) 50%,
+        rgba(94, 234, 212, 0.0)  90%,
+        transparent 100%);
+    border-top-left-radius: var(--fv-radius-lg);
+    border-top-right-radius: var(--fv-radius-lg);
+    pointer-events: none;
+}
+
+article:last-child { margin-bottom: 3rem; }
 
 .entry-title {
-    margin-bottom: 0.4rem;
+    margin: 0 0 0.5rem;
     font-size: 2.1rem;
     line-height: 1.2;
 }
 
 .entry-title a,
-.entry-title a:visited {
-    color: var(--fv-foam);
-}
-
-.entry-title a:hover {
-    color: var(--fv-bio);
-    text-decoration: none;
-}
+.entry-title a:visited { color: var(--fv-text); }
+.entry-title a:hover   { color: var(--fv-bio); text-decoration: none; }
 
 article .metadata {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.75rem;
     color: var(--fv-muted);
     font-size: 0.875rem;
     font-family: "Inter", sans-serif;
 }
 
-article .metadata p { margin-bottom: 0.2rem; }
-
-article .metadata a {
-    color: var(--fv-mist);
-}
+article .metadata p   { margin-bottom: 0.2rem; }
+article .metadata a   { color: var(--fv-mist); }
 
 article .metadata .tags a {
-    background-color: rgba(31, 122, 122, 0.18);
-    color: var(--fv-bio);
+    background-color: rgba(94, 234, 212, 0.08);
+    color: var(--fv-bio-soft);
     padding: 0.15rem 0.65rem;
     border-radius: 999px;
     font-size: 0.78rem;
     margin-right: 0.3rem;
     display: inline-block;
     line-height: 1.6;
-    border: 1px solid rgba(94, 234, 212, 0.18);
+    border: 1px solid rgba(94, 234, 212, 0.22);
     transition: all 0.15s ease;
 }
 
 article .metadata .tags a:hover {
     background-color: var(--fv-bio);
-    color: var(--fv-abyss);
+    color: #04161d;
     border-color: var(--fv-bio);
     text-decoration: none;
 }
@@ -335,21 +349,22 @@ blockquote {
     border-left: 3px solid var(--fv-coral);
     padding: 0.4rem 0 0.4rem 1.25rem;
     margin: 1.5rem 0;
-    color: var(--fv-mist);
+    color: var(--fv-text-soft);
     font-style: italic;
     background: transparent;
 }
 
 /* ---------- Code blocks ---------- */
 pre, .highlight {
-    background-color: #0a1f28;
-    border: 1px solid var(--fv-current);
+    background-color: var(--fv-surface-code);
+    border: 1px solid var(--fv-surface-border);
     border-radius: var(--fv-radius);
-    padding: 1rem 1.15rem;
+    padding: 1.1rem 1.25rem;
     overflow-x: auto;
     line-height: 1.55;
-    color: #e8f1f4;
+    color: #f4f6f8;
     box-shadow: 0 1px 0 rgba(94, 234, 212, 0.05) inset;
+    margin: 1.25rem 0;
 }
 
 .highlight pre {
@@ -357,26 +372,27 @@ pre, .highlight {
     border: none;
     padding: 0;
     box-shadow: none;
+    margin: 0;
 }
 
 /* Inline code */
 :not(pre) > code {
-    background-color: rgba(94, 234, 212, 0.08);
+    background-color: rgba(94, 234, 212, 0.10);
     color: var(--fv-bio-soft);
     padding: 0.1rem 0.4rem;
     border-radius: 4px;
-    border: 1px solid rgba(94, 234, 212, 0.12);
+    border: 1px solid rgba(94, 234, 212, 0.18);
     font-size: 0.88em;
 }
 
-/* Make Pygments line-numbers blend on dark */
+/* Pygments line-numbers */
 .highlight .lineno,
 .highlight .linenos,
 .linenodiv pre,
 td.linenos pre {
     color: var(--fv-muted);
     background: transparent;
-    border-right: 1px solid var(--fv-current);
+    border-right: 1px solid var(--fv-surface-border);
     padding-right: 0.6rem;
     user-select: none;
 }
@@ -386,11 +402,11 @@ table {
     border-collapse: collapse;
     margin: 1.5rem 0;
     width: 100%;
-    color: var(--fv-foam);
+    color: var(--fv-text);
 }
 
 th, td {
-    border-bottom: 1px solid var(--fv-current);
+    border-bottom: 1px solid var(--fv-surface-border);
     padding: 0.6rem 0.85rem;
     text-align: left;
 }
@@ -399,19 +415,17 @@ th {
     border-bottom: 2px solid var(--fv-bio);
     font-weight: 600;
     color: var(--fv-bio-soft);
-    background: rgba(31, 122, 122, 0.08);
+    background: var(--fv-surface-soft);
 }
 
-tbody tr:hover {
-    background: rgba(94, 234, 212, 0.03);
-}
+tbody tr:hover { background: rgba(94, 234, 212, 0.04); }
 
 /* ---------- Buttons / pagination ---------- */
 .btn-outline-primary,
 .btn-outline-secondary {
-    border-color: var(--fv-current);
+    border-color: var(--fv-surface-border);
     color: var(--fv-bio);
-    background: rgba(12, 49, 64, 0.4);
+    background: var(--fv-surface-soft);
     border-radius: 999px;
     font-weight: 500;
     letter-spacing: 0.02em;
@@ -425,7 +439,7 @@ tbody tr:hover {
 .btn-outline-secondary:focus {
     background-color: var(--fv-bio);
     border-color: var(--fv-bio);
-    color: var(--fv-abyss);
+    color: #04161d;
     box-shadow: 0 0 24px -8px rgba(94, 234, 212, 0.6);
 }
 
@@ -438,7 +452,7 @@ tbody tr:hover {
     color: var(--fv-muted);
     text-align: center;
     background-color: transparent;
-    border-top: 1px solid var(--fv-current);
+    border-top: 1px solid rgba(29, 58, 77, 0.5);
     margin-top: 4rem;
     font-size: 0.875rem;
 }
@@ -446,7 +460,7 @@ tbody tr:hover {
 #footer a, .blog-footer a {
     color: var(--fv-mist);
     text-decoration: underline;
-    text-decoration-color: rgba(174, 195, 204, 0.3);
+    text-decoration-color: rgba(168, 186, 198, 0.3);
 }
 
 #footer a:hover, .blog-footer a:hover {
@@ -467,26 +481,26 @@ hr {
     border: none;
     height: 1px;
     background: linear-gradient(to right,
-        transparent, var(--fv-current), transparent);
+        transparent, var(--fv-surface-border), transparent);
     margin: 2.5rem 0;
 }
 
 /* ---------- Search form ---------- */
 .bootblog4-search-form-holder .form-control,
 .form-control {
-    background-color: var(--fv-trench);
-    border: 1px solid var(--fv-current);
-    color: var(--fv-foam);
+    background-color: var(--fv-surface);
+    border: 1px solid var(--fv-surface-border);
+    color: var(--fv-text);
     border-radius: 999px;
 }
 
 .form-control::placeholder { color: var(--fv-muted); }
 
 .form-control:focus {
-    background-color: var(--fv-trench);
-    color: var(--fv-foam);
+    background-color: var(--fv-surface);
+    color: var(--fv-text);
     border-color: var(--fv-bio);
-    box-shadow: 0 0 0 0.15rem rgba(94, 234, 212, 0.18);
+    box-shadow: 0 0 0 0.15rem rgba(94, 234, 212, 0.2);
 }
 
 .bootblog4-search-form-holder .btn { border-radius: 999px; }
@@ -494,13 +508,13 @@ hr {
 /* ---------- Selection ---------- */
 ::selection {
     background: var(--fv-bio);
-    color: var(--fv-abyss);
+    color: #04161d;
 }
 
 /* ---------- Skip link (a11y) ---------- */
 .sr-only-focusable:focus {
     background: var(--fv-bio);
-    color: var(--fv-abyss);
+    color: #04161d;
     padding: 0.5rem 1rem;
     z-index: 1000;
 }
@@ -508,22 +522,20 @@ hr {
 /* ---------- Featured-post boxes (bootblog4) ---------- */
 .bootblog4-featured-jumbotron-row .jumbotron,
 .bootblog4-featured-text {
-    background-color: var(--fv-deep);
-    color: var(--fv-foam);
-    border: 1px solid var(--fv-current);
+    background-color: var(--fv-surface-soft);
+    color: var(--fv-text);
+    border: 1px solid var(--fv-surface-border);
     border-radius: var(--fv-radius-lg);
 }
 
 /* ---------- Giscus / comments ---------- */
 .giscus,
-.giscus-frame {
-    margin-top: 1.5rem;
-}
+.giscus-frame { margin-top: 1.5rem; }
 
 .comments {
     margin-top: 3rem;
     padding-top: 2rem;
-    border-top: 1px solid var(--fv-current);
+    border-top: 1px solid var(--fv-surface-border);
 }
 
 .comments h2 {
@@ -533,24 +545,22 @@ hr {
 }
 
 /* ---------- Listings (archive, tags, categories) ---------- */
-.postlist, .postlist li, .post-list li {
-    color: var(--fv-foam);
-}
+.postlist, .postlist li,
+.post-list, .post-list li { color: var(--fv-text); }
 
-.postlist a, .post-list a {
-    color: var(--fv-foam);
-}
+.postlist a, .post-list a { color: var(--fv-text); }
 
-.postlist a:hover, .post-list a:hover {
-    color: var(--fv-bio);
-}
+.postlist a:hover, .post-list a:hover { color: var(--fv-bio); }
 
 /* ===========================================================
    Jupyter notebooks
    Nikola renders notebooks via nbconvert; we cover both the
    modern JupyterLab CSS (.jp-*) and classic IPython class
-   names so notebooks look at home in the dark theme but stay
-   clean and readable.
+   names so notebooks read cleanly on the dark theme.
+   The hierarchy on the article surface is:
+       inputs  -> --fv-surface-code   (slightly inset)
+       outputs -> --fv-surface-output (slightly lifted)
+       dataframes header -> --fv-surface-soft
    =========================================================== */
 
 /* Whole notebook frame */
@@ -559,7 +569,7 @@ div.cell,
 .text_cell,
 .code_cell {
     background: transparent;
-    color: var(--fv-foam);
+    color: var(--fv-text);
 }
 
 /* Input cells (code) */
@@ -569,10 +579,10 @@ div.cell,
 .input,
 div.input_area,
 .input_area {
-    background-color: #0a1f28 !important;
-    border: 1px solid var(--fv-current) !important;
+    background-color: var(--fv-surface-code) !important;
+    border: 1px solid var(--fv-surface-border) !important;
     border-radius: var(--fv-radius);
-    color: var(--fv-foam);
+    color: var(--fv-text);
 }
 
 div.input_area > div.highlight,
@@ -581,9 +591,10 @@ div.input_area > div.highlight,
     border: none !important;
     box-shadow: none !important;
     padding: 0.25rem 0 !important;
+    margin: 0 !important;
 }
 
-/* Prompt labels (In [n]:, Out [n]:) */
+/* Prompt labels */
 .jp-InputPrompt,
 .jp-OutputPrompt,
 .input_prompt,
@@ -598,122 +609,132 @@ div.prompt {
 .jp-InputPrompt  { color: var(--fv-bio-soft) !important; }
 .jp-OutputPrompt { color: var(--fv-coral) !important; }
 
-/* Output area */
+/* Output area frame */
 .jp-OutputArea,
 .jp-OutputArea-output,
 div.output_area,
 .output,
 .output_subarea {
     background: transparent;
-    color: var(--fv-foam);
+    color: var(--fv-text);
 }
 
+/* Stream / text output */
 .jp-OutputArea-output pre,
 div.output_area pre,
 .output pre {
-    background-color: var(--fv-trench);
-    border: 1px solid var(--fv-current);
+    background-color: var(--fv-surface-output);
+    border: 1px solid var(--fv-surface-border);
     border-radius: var(--fv-radius);
-    color: var(--fv-foam);
-    padding: 0.75rem 1rem;
+    color: var(--fv-text);
+    padding: 0.85rem 1.1rem;
+    margin: 0.5rem 0;
 }
 
-/* stderr / stream / errors */
+/* stderr cells */
 .jp-OutputArea-output.jp-OutputArea-stderr,
 div.output_stderr,
 .output_stderr {
-    background-color: rgba(255, 138, 101, 0.08);
-    border-color: rgba(255, 138, 101, 0.3);
+    background-color: rgba(255, 157, 122, 0.08);
+    border-color: rgba(255, 157, 122, 0.35);
     color: var(--fv-coral-hot);
 }
 
-/* Rendered HTML (markdown, dataframes, etc.) */
+/* Rendered HTML (markdown outputs, dataframes, etc.) */
 .jp-RenderedHTMLCommon,
 .rendered_html {
-    color: var(--fv-foam);
+    color: var(--fv-text);
 }
+
+.jp-RenderedHTMLCommon p,
+.rendered_html p { color: var(--fv-text); }
 
 .jp-RenderedHTMLCommon a,
-.rendered_html a {
-    color: var(--fv-coral);
-}
+.rendered_html a { color: var(--fv-coral); }
 
 .jp-RenderedHTMLCommon a:hover,
-.rendered_html a:hover {
-    color: var(--fv-coral-hot);
-}
+.rendered_html a:hover { color: var(--fv-coral-hot); }
 
-/* pandas / dataframe tables */
+/* pandas / dataframe tables — sit on the article surface */
 .jp-RenderedHTMLCommon table,
 .rendered_html table,
 table.dataframe {
-    background: var(--fv-trench);
-    color: var(--fv-foam);
-    border: 1px solid var(--fv-current);
+    background: var(--fv-surface-output);
+    color: var(--fv-text);
+    border: 1px solid var(--fv-surface-border);
     border-radius: var(--fv-radius);
     overflow: hidden;
-    font-size: 0.88em;
+    font-size: 0.9em;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin: 1rem 0;
 }
 
 .jp-RenderedHTMLCommon thead tr,
 .rendered_html thead tr,
 table.dataframe thead tr {
-    background: rgba(31, 122, 122, 0.18);
-    color: var(--fv-bio-soft);
+    background: var(--fv-surface-soft);
 }
 
 .jp-RenderedHTMLCommon th,
 .rendered_html th,
 table.dataframe th {
-    border-bottom: 1px solid var(--fv-current);
+    border-bottom: 2px solid var(--fv-bio);
     color: var(--fv-bio-soft);
+    font-weight: 600;
+    padding: 0.55rem 0.85rem;
 }
 
 .jp-RenderedHTMLCommon td,
 .rendered_html td,
 table.dataframe td {
-    border-bottom: 1px solid rgba(20, 69, 86, 0.5);
-    color: var(--fv-foam);
+    border-bottom: 1px solid var(--fv-surface-border);
+    color: var(--fv-text-soft);
+    padding: 0.5rem 0.85rem;
 }
 
-.jp-RenderedHTMLCommon tbody tr:nth-child(odd),
-.rendered_html tbody tr:nth-child(odd),
-table.dataframe tbody tr:nth-child(odd) {
-    background: rgba(7, 33, 42, 0.4);
+.jp-RenderedHTMLCommon tbody tr:nth-child(even),
+.rendered_html tbody tr:nth-child(even),
+table.dataframe tbody tr:nth-child(even) {
+    background: rgba(94, 234, 212, 0.02);
 }
 
-/* Matplotlib / image outputs — give them a neutral light backing so
-   figures rendered with transparent backgrounds remain readable */
+.jp-RenderedHTMLCommon tbody tr:hover,
+.rendered_html tbody tr:hover,
+table.dataframe tbody tr:hover {
+    background: rgba(94, 234, 212, 0.05);
+}
+
+/* Index column (the leftmost "0,1,2..." in pandas tables) — dim */
+table.dataframe tbody th { color: var(--fv-muted); font-weight: 400; }
+
+/* Matplotlib / image outputs — light backing so transparent
+   canvases stay legible against the dark theme */
 .jp-OutputArea-output img,
 div.output_area img,
 .output img {
     background: #f7f9fa;
-    padding: 4px;
+    padding: 6px;
+    border: 1px solid var(--fv-surface-border);
     border-radius: var(--fv-radius);
     max-width: 100%;
     height: auto;
 }
 
-/* SVG outputs — same treatment */
 .jp-OutputArea-output svg,
 div.output_area svg {
     background: #f7f9fa;
+    border: 1px solid var(--fv-surface-border);
     border-radius: var(--fv-radius);
 }
 
-/* Markdown cells */
+/* Markdown cells inside notebooks */
 .jp-MarkdownCell,
-.text_cell_render {
-    color: var(--fv-foam);
-}
+.text_cell_render { color: var(--fv-text); }
 
 /* Notebook cell spacing */
-.jp-Cell,
-div.cell {
-    margin: 1rem 0;
-}
+.jp-Cell, div.cell { margin: 1.25rem 0; }
 
 /* ---------- Pygments / monokai polish on dark background ---------- */
-/* Make the monokai .highlight pre flush with our wrapper */
-.highlight { background-color: #0a1f28; }
+.highlight { background-color: var(--fv-surface-code); }
 .highlight .hll { background-color: rgba(94, 234, 212, 0.08); }
