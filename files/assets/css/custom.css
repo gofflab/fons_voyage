@@ -149,13 +149,14 @@ body {
 
 h1, h2, h3, h4, h5, h6,
 .blog-header-logo, .entry-title, .blog-title {
-    font-family: "Fraunces", Georgia, "Times New Roman", serif;
-    font-weight: 600;
-    letter-spacing: -0.01em;
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+                 Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.02em;
     color: var(--fv-text);
 }
 
-h1, .entry-title { font-weight: 700; letter-spacing: -0.02em; }
+h1, .entry-title { font-weight: 800; letter-spacing: -0.03em; }
 
 article h2 { margin-top: 2.75rem; font-size: 1.65rem; }
 article h3 { margin-top: 2rem;    font-size: 1.3rem; }
@@ -187,29 +188,31 @@ code, pre, kbd, samp,
 
 .blog-header-logo,
 .blog-header-logo.text-dark {
-    font-family: "Fraunces", Georgia, serif;
-    font-weight: 700;
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+                 Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-weight: 800;
     font-size: 2.5rem;
-    color: var(--fv-bio) !important;
-    letter-spacing: -0.02em;
-    text-shadow: 0 0 24px rgba(94, 234, 212, 0.2);
+    color: var(--fv-sand) !important;
+    letter-spacing: -0.035em;
+    text-shadow: 0 0 28px rgba(244, 231, 197, 0.22);
 }
 
 .blog-header-logo:hover,
 .blog-header-logo.text-dark:hover {
-    color: var(--fv-bio-soft) !important;
+    color: #ffffff !important;
     text-decoration: none;
 }
 
 .blog-tagline {
-    font-family: "Fraunces", Georgia, serif;
-    font-style: italic;
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+                 Roboto, "Helvetica Neue", Arial, sans-serif;
     font-weight: 400;
     color: var(--fv-mist);
-    font-size: 1.05rem;
-    margin-top: 0.4rem;
+    font-size: 0.95rem;
+    margin-top: 0.5rem;
     text-align: center;
     line-height: 1.55;
+    letter-spacing: 0.01em;
 }
 
 .blog-tagline .tagline-line { display: block; }
